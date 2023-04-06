@@ -1,0 +1,145 @@
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+html {
+  background-image: url("https://cdn.dribbble.com/users/1908366/screenshots/4461835/14.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hidden {
+  display: none;
+}
+
+canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#canvas-tag {
+  border: 5px solid black;
+  margin: auto;
+  margin-top: 50px;
+}
+
+ul {
+  list-style: none;
+}
+
+.home-screen-details {
+  color: wheat;
+  font-size: 30px;
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#title {
+  color: wheat;
+  font-size: 50px;
+  position: absolute;
+  left: 55%;
+  top: 5%;
+  transform: translate(-10%, -50%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#point1 {
+  position: relative;
+  left: 80%;
+  top: 20%;
+  transform: translate(-35%, -300%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#point2 {
+  position: relative;
+  left: 75%;
+  top: 20%;
+  transform: translate(-35%, -200%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#point3 {
+  position: relative;
+  left: 55%;
+  top: 20%;
+  transform: translate(-35%, -100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#point4 {
+  position: relative;
+  left: 55%;
+  top: 20%;
+  transform: translate(-35%, -10%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home-screen {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#linkedIn-button {
+  position: absolute;
+  left: 11%;
+  top: 14%;
+  transform: translate(-100%, -87%);
+  background-color: antiquewhite;
+  width: 50px;
+  height: 50px;
+}
+
+#gitHub-button {
+  position: absolute;
+  left: 14.5%;
+  top: 14%;
+  transform: translate(-100%, -87%);
+  background-color: antiquewhite;
+  width: 50px;
+  height: 50px;
+}
+
+#start-button {
+  position: absolute;
+  left: 75%;
+  top: 80%;
+  transform: translate(-40%, -20%);
+  background-color: wheat;
+  width: 150px;
+  height: 50px;
+  font-size: 25px;
+}
+
+#instructions-button {
+  position: absolute;
+  left: 20%;
+  top: 80%;
+  transform: translate(-20%, -20%);
+  background-color: wheat;
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+}
+
+#blue-ufo {
+  position: absolute;
+  left: 85%;
+  top: 10%;
+  transform: translate(-20%, -85%);
+}
+
+#green-ufo {
+  position: absolute;
+  left: 44%;
+  top: 10%;
+  transform: translate(-20%, -85%);
+}
