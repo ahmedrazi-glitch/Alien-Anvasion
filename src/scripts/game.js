@@ -24,6 +24,7 @@ class Game {
     this.b = 475;
     this.projectiles = [];
     this.handlePeople();
+    this.gameover = false;
     // const input = new HandleControls();
   }
 
@@ -44,7 +45,7 @@ class Game {
   handleClick(){  
     window.addEventListener('keydown', e => {
       console.log(e);
-      if (e.key === " "){
+      if (e.key === " " && this.projectiles.length <= 5){
         let newProjectile = new Projectile(150, 175, 500, 0, 10);
         this.projectiles.push(newProjectile);
       }
@@ -87,13 +88,33 @@ class Game {
       for (let j = 0; j < this.people.length; j++) {
         const singleProjectile = this.projectiles[i];
         const singlePerson = this.people[j];
-        const dx = singleProjectile.x - singlePerson.x;
-        const dy = singleProjectile.y - singlePerson.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < singleProjectile.width/2 + singlePerson.width/2){
-          gameover = true;
-          console.log('gameOver');
+        // singleProjectile.update(); // update projectile position
+        // singlePerson.update(); // update person position
+        // const dx = singleProjectile.x - singlePerson.x;  
+        // console.log(dx);  
+        // console.log("this is distance between a singleProjectile and singlePerson.");
+        // const dy = singleProjectile.y - singlePerson.y;  
+        // console.log(dy);  
+
+        if (singleProjectile.y === singlePerson.x) {
+          console.log("collision");
+          // this.projectiles.splice(i, 1);
+          // this.people.splice(j, 1);
         }
+        // } else {
+        //   continue;
+        // }
+        // console.log("this is distance between a singleProjectile and singlePerson.");
+        // singleProjectile.update();
+        // const dx = singleProjectile.y = singlePerson.x;
+        // console.log(dx);
+        // const distance = Math.sqrt(dx * dx + dy * dy);   
+        
+        // if (distance < singleProjectile.width/2 + singlePerson.width/2){
+        //   this.gameover = true;  
+        //   console.log('gameOver');   
+        // }
+
         // if (singleProjectile.checkCollision(singlePerson) === true ) {
         //   console.log(true);
         //   // Handle collision here

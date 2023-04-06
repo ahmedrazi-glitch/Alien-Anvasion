@@ -23,11 +23,11 @@ class Projectile {
     ctx.fill();
   }
 
-  checkCollision(person) {
-    if (person.x === this.x){
-      return 'hello';
-    }
-  }
+  // checkCollision(person) {
+  //   if (person.x === this.x){
+  //     return 'hello';
+  //   }
+  // }
 }
 
 export default Projectile;

@@ -32,11 +32,11 @@ console.log('hi');
   });
  // input for testing purposes
 
- homeScreen.style.display = "none";
- canvasSelect.style.display = "block";
- canvasSelect.classList.remove("hidden");
+//  homeScreen.style.display = "none";
+//  canvasSelect.style.display = "block";
+//  canvasSelect.classList.remove("hidden");
 
-  game.start();
+//   game.start();
 
  
  // everything above is for testing purposes
