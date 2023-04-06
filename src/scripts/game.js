@@ -34,7 +34,7 @@ class Game {
   // const input = new HandleControls();
 
   handlePeople(){
-    let startPos = 1180;
+    let startPos = 2280;
     for(let i = 1; i < 6; i += 1){
       let person = new People(`assets/game/person${i}.png`, startPos);
       this.people.push(person);
@@ -96,17 +96,17 @@ class Game {
         // const dy = singleProjectile.y - singlePerson.y;  
         // console.log(dy);  
 
-        if (singleProjectile.y === singlePerson.x) {
+        if (singleProjectile.y + 5 === singlePerson.x) {
           console.log("collision");
           // this.projectiles.splice(i, 1);
           // this.people.splice(j, 1);
         }
         // } else {
-        //   continue;
+        //   continue;  
         // }
         // console.log("this is distance between a singleProjectile and singlePerson.");
-        // singleProjectile.update();
-        // const dx = singleProjectile.y = singlePerson.x;
+        // singleProjectile.update();  
+        // const dx = singleProjectile.y = singlePerson.x;  
         // console.log(dx);
         // const distance = Math.sqrt(dx * dx + dy * dy);   
         

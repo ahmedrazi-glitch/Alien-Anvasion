@@ -12,6 +12,9 @@ class People{
     // console.log(this.person0);
     ctx.strokeStyle = "white";
     ctx.strokeRect(this.x, this.y, this.width, this.height); 
+    // ctx.beginPath();
+    // ctx.arc(this.x, this.y, );
+    // ctx.stroke();
     ctx.drawImage(this.person0, this.x, this.y, this.width, this.height); 
   }
 
