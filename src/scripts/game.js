@@ -7,6 +7,7 @@ import Projectile from "./projectile";
 class Game {
   constructor(canvas){
     this.ctx = canvas.getContext("2d");
+    
     this.background = new Background(canvas.width, canvas.height);
     // this.background.src = "assets/game/background3.webp";
     this.spaceship = new Image();
@@ -24,6 +25,7 @@ class Game {
     this.handlePeople();
     this.gameover = false;
     // const input = new HandleControls();
+
   }
 
   static DIM_X = 1200;
@@ -32,9 +34,10 @@ class Game {
   // const input = new HandleControls();
 
   handlePeople(){
+    let ctx = this.ctx;
     let startPos = 2280;
     for(let i = 1; i < 6; i += 1){
-      let person = new People(`assets/game/person${i}.png`, startPos);
+      let person = new People(`assets/game/person${i}.png`, startPos, ctx);
       this.people.push(person);
       startPos += 300;
     }
@@ -50,9 +53,8 @@ class Game {
     });
     console.log(this.projectiles);
   }
-  
 
-  animate() {
+  animate() {  
     this.x -= 3;
    
     this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y); 
@@ -110,6 +112,7 @@ class Game {
           // Collision detected
           person.isExploded = true;
           console.log("Projectile collided with person");
+          person.personExploding(person.isExploded);
           // Handle collision logic here
   
           // Remove the projectile from the array
@@ -123,73 +126,6 @@ class Game {
       }
     }
   }
-
-  // detectCollision() {
-  //   for (let j = 0; j < this.people.length; j++) {
-  //     for (let i = 0; i < this.projectiles.length; i++) {
-  //       const singleProjectile = this.projectiles[i];
-  //       const singlePerson = this.people[j];
-        
-  //       // Get the bounding box of the projectile
-  //       const projectileLeft = singleProjectile.x;
-  //       const projectileRight = singleProjectile.x + singleProjectile.width;
-  //       const projectileTop = singleProjectile.y;
-  //       const projectileBottom = singleProjectile.y + singleProjectile.height;
-  
-  //       // Get the bounding box of the person
-  //       const personLeft = singlePerson.x;
-  //       const personRight = singlePerson.x + singlePerson.width;
-  //       const personTop = singlePerson.y;
-  //       const personBottom = singlePerson.y + singlePerson.height;
-  
-  //       // Check for collision by comparing the bounding boxes
-  //       if (
-  //         projectileLeft < personRight &&
-  //         projectileRight > personLeft &&
-  //         projectileTop < personBottom &&
-  //         projectileBottom > personTop
-  //       ) {
-  //         // Collision detected
-  //         console.log("collided");
-  //       } else {
-  //         // No collision detected
-  //         console.log("did not collide");
-  //       }
-  //     }
-  //   }
-  // }
-
-  // detectCollision() {
-  //   for (let j = 0; j < this.people.length; j++) {
-  //     for (let i = 0; i < this.projectiles.length; i++) {
-  //       const singleProjectile = this.projectiles[i];
-  //       const singlePerson = this.people[j];
-  //       // Get the center coordinates of the projectile
-  //       const projectileX = singleProjectile.x; 
-  //       const projectileY = singleProjectile.y;
-      
-  //       // Get the coordinates of the person's bounding box
-  //       const personX = singlePerson.x;
-  //       const personY = singlePerson.y;
-  //       const personWidth = singlePerson.width;
-  //       const personHeight = singlePerson.height;
-      
-  //       // Check for collision by comparing the coordinates
-  //       if (
-  //         projectileX > personX &&
-  //         projectileX < personX + personWidth &&
-  //         projectileY > personY &&
-  //         projectileY < personY + personHeight
-  //       ) {
-  //         // Collision detected
-  //         console.log("collided");
-  //       } else {
-  //         // No collision detected
-  //         console.log("did not collide");
-  //       }
-  //     }
-  //   }
-  // }
 
   draw() {
     this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
