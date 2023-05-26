@@ -20,8 +20,6 @@ class Game {
     this.people = [];
     this.x = 1180;
     this.y = 475;
-    this.a = 1180;
-    this.b = 475;
     this.projectiles = [];
     this.handlePeople();
     this.gameover = false;
@@ -53,18 +51,6 @@ class Game {
     console.log(this.projectiles);
   }
   
-  // animate() {
-  //   this.x -= 1;  
- 
-  //   this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y); 
-  //   this.ctx.drawImage(this.background, 0, 0, Game.DIM_X, Game.DIM_Y); 
-  //   this.background.update();
-  //   this.ctx.drawImage(this.spaceship, 100, 100, 100, 100); 
-  //   this.ctx.drawImage(this.human, this.x, this.y, 50, 40); 
-
-  //   requestAnimationFrame(this.animate.bind(this));
-
-  // }
 
   animate() {
     this.x -= 3;
@@ -84,48 +70,7 @@ class Game {
       projec.draw(this.ctx);
     });
 
-    for (let i = 0; i < this.projectiles.length; i++) {
-      for (let j = 0; j < this.people.length; j++) {
-        const singleProjectile = this.projectiles[i];
-        const singlePerson = this.people[j];
-        // singleProjectile.update(); // update projectile position
-        // singlePerson.update(); // update person position
-        // const dx = singleProjectile.x - singlePerson.x;  
-        // console.log(dx);  
-        // console.log("this is distance between a singleProjectile and singlePerson.");
-        // const dy = singleProjectile.y - singlePerson.y;  
-        // console.log(dy);  
-
-        if (singleProjectile.y + 5 === singlePerson.x) {
-          console.log("collision");
-          // this.projectiles.splice(i, 1);
-          // this.people.splice(j, 1);
-        }
-        // } else {
-        //   continue;  
-        // }
-        // console.log("this is distance between a singleProjectile and singlePerson.");
-        // singleProjectile.update();  
-        // const dx = singleProjectile.y = singlePerson.x;  
-        // console.log(dx);
-        // const distance = Math.sqrt(dx * dx + dy * dy);   
-        
-        // if (distance < singleProjectile.width/2 + singlePerson.width/2){
-        //   this.gameover = true;  
-        //   console.log('gameOver');   
-        // }
-
-        // if (singleProjectile.checkCollision(singlePerson) === true ) {
-        //   console.log(true);
-        //   // Handle collision here
-        //   // For example, remove the projectile and person from their arrays
-        //   this.projectiles.splice(i, 1);
-        //   this.people.splice(j, 1);
-        // } else if (singleProjectile.checkCollision(singlePerson) === false) {
-        //   console.log(false);
-        // }
-      }
-    }
+    this.detectCollision();
 
     this.ctx.beginPath();
     this.ctx.ellipse(150, 500, 35, 65, 30, 60, 45, 15, Math.PI * 2);
@@ -134,6 +79,117 @@ class Game {
   
     requestAnimationFrame(this.animate.bind(this));
   }
+
+
+  detectCollision() {
+    for (let i = 0; i < this.projectiles.length; i++) {
+      const projectile = this.projectiles[i];
+  
+      for (let j = 0; j < this.people.length; j++) {
+        const person = this.people[j];
+  
+        // Get the bounding box of the projectile
+        const projectileLeft = projectile.x;
+        const projectileRight = projectile.x + projectile.width;
+        const projectileTop = projectile.y;
+        const projectileBottom = projectile.y + projectile.height;
+  
+        // Get the bounding box of the person
+        const personLeft = person.x;
+        const personRight = person.x + person.width;
+        const personTop = person.y;
+        const personBottom = person.y + person.height;
+  
+        // Check for collision by comparing the bounding boxes
+        if (
+          projectileLeft < personRight &&
+          projectileRight > personLeft &&
+          projectileTop < personBottom &&
+          projectileBottom > personTop
+        ) {
+          // Collision detected
+          person.isExploded = true;
+          console.log("Projectile collided with person");
+          // Handle collision logic here
+  
+          // Remove the projectile from the array
+          this.projectiles.splice(i, 1);
+          i--; // Decrement the loop counter to account for the removed projectile
+  
+          // Remove the person from the array
+          this.people.splice(j, 1);
+          j--; // Decrement the loop counter to account for the removed person
+        }
+      }
+    }
+  }
+
+  // detectCollision() {
+  //   for (let j = 0; j < this.people.length; j++) {
+  //     for (let i = 0; i < this.projectiles.length; i++) {
+  //       const singleProjectile = this.projectiles[i];
+  //       const singlePerson = this.people[j];
+        
+  //       // Get the bounding box of the projectile
+  //       const projectileLeft = singleProjectile.x;
+  //       const projectileRight = singleProjectile.x + singleProjectile.width;
+  //       const projectileTop = singleProjectile.y;
+  //       const projectileBottom = singleProjectile.y + singleProjectile.height;
+  
+  //       // Get the bounding box of the person
+  //       const personLeft = singlePerson.x;
+  //       const personRight = singlePerson.x + singlePerson.width;
+  //       const personTop = singlePerson.y;
+  //       const personBottom = singlePerson.y + singlePerson.height;
+  
+  //       // Check for collision by comparing the bounding boxes
+  //       if (
+  //         projectileLeft < personRight &&
+  //         projectileRight > personLeft &&
+  //         projectileTop < personBottom &&
+  //         projectileBottom > personTop
+  //       ) {
+  //         // Collision detected
+  //         console.log("collided");
+  //       } else {
+  //         // No collision detected
+  //         console.log("did not collide");
+  //       }
+  //     }
+  //   }
+  // }
+
+  // detectCollision() {
+  //   for (let j = 0; j < this.people.length; j++) {
+  //     for (let i = 0; i < this.projectiles.length; i++) {
+  //       const singleProjectile = this.projectiles[i];
+  //       const singlePerson = this.people[j];
+  //       // Get the center coordinates of the projectile
+  //       const projectileX = singleProjectile.x; 
+  //       const projectileY = singleProjectile.y;
+      
+  //       // Get the coordinates of the person's bounding box
+  //       const personX = singlePerson.x;
+  //       const personY = singlePerson.y;
+  //       const personWidth = singlePerson.width;
+  //       const personHeight = singlePerson.height;
+      
+  //       // Check for collision by comparing the coordinates
+  //       if (
+  //         projectileX > personX &&
+  //         projectileX < personX + personWidth &&
+  //         projectileY > personY &&
+  //         projectileY < personY + personHeight
+  //       ) {
+  //         // Collision detected
+  //         console.log("collided");
+  //       } else {
+  //         // No collision detected
+  //         console.log("did not collide");
+  //       }
+  //     }
+  //   }
+  // }
 
   draw() {
     this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
@@ -169,59 +225,5 @@ class Game {
   
 }
 
-export default Game
+export default Game;
 
-// class Game {
-//   constructor(canvas) {
-//     this.ctx = canvas.getContext("2d");
-//     this.background = new Image();
-//     this.background.src = "assets/game/background3.webp";
-//     this.spaceship = new Image();
-//     this.spaceship.src = "assets/game/spaceship.png";
-//     this.human = new Image();
-//     this.human.src = "assets/game/human.png";
-//     this.firstGame = true;
-//     this.x = 1180;
-//     this.y = 500;
-//   }
-
-//   static DIM_X = 1200;
-//   static DIM_Y = 600;
-
-//   animate() {
-//     // Move human image from right to left
-//     this.x -= 1;
-
-//     // Clear canvas and draw images
-//     this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-//     this.ctx.drawImage(this.background, 0, 0, Game.DIM_X, Game.DIM_Y);
-//     this.ctx.drawImage(this.spaceship, 100, 100, 100, 100);
-//     this.ctx.drawImage(this.human, this.x, this.y, 50, 40);
-
-//     // Call animate() recursively to create an animation loop
-//     requestAnimationFrame(this.animate.bind(this));
-//   }
-
-//   draw() {
-//     this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
-//     this.ctx.drawImage(this.background, 0, 0, Game.DIM_X, Game.DIM_Y);
-//     this.ctx.drawImage(this.spaceship, 100, 100, 100, 100);
-//     this.ctx.drawImage(this.human, this.x, this.y, 50, 40);
-//   }
-
-//   start() {
-//     if (this.firstGame) {
-//       this.animate();
-//       this.firstGame = false;
-//     } else {
-//       clearInterval(this.intervalId);
-//       this.restartGame();
-//     }
-//   }
-
-//   restartGame() {
-//     // Define restart logic here.
-//   }
-// }
-
-// export default Game;

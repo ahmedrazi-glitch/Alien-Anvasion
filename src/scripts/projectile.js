@@ -5,6 +5,8 @@ class Projectile {
     this.vx = vx;
     this.vy = vy;
     this.damage = damage;
+    this.width = 10; // Set the width of the projectile
+    this.height = 10; // Set the height of the projectile
     this.people = [];
   }
 
