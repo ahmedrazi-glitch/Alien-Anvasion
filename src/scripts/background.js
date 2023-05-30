@@ -57,7 +57,7 @@
 class Background {
   constructor(width, height) {
     this.img = new Image();
-    this.img.src = "assets/game/background3.webp";
+    this.img.src = "assets/game/background/background3.webp";
     this.width = width;
     this.height = height;
     this.x = 0;

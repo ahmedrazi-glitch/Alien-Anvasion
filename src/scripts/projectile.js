@@ -30,6 +30,11 @@ class Projectile {
   //     return 'hello';
   //   }
   // }
+
+  // isOutOfBound() {
+  //   return this.x > 475; // Game.DIM_X + this.radius;
+  //   console.log("out");
+  // }
 }
 
 export default Projectile;

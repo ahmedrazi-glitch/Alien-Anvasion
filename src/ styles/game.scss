@@ -1,0 +1,30 @@
+/* Back To Home button */
+// .back-to-home-button {
+  .home-button {
+    background-color: blue;
+    position: relative;
+    z-index: 1;
+  }
+  
+  // .back-to-home-button:hover {
+  .home-button:hover {
+    cursor: pointer;
+  }
+  
+  // .back-to-home-button::after {
+  .home-button::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: yellow;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  // .back-to-home-button:hover::after {
+  .home-button:hover::after {
+    opacity: 1;
+  }
