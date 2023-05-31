@@ -60,9 +60,9 @@ canvas {
 }
 
 #canvas-tag {
-  border: 5px solid black;
+  border: 0.5vw solid black;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 3vw;
 }
 
 ul {
@@ -140,6 +140,11 @@ ul {
   height: 50px;
 }
 
+#linkedIn-button:hover {
+  box-shadow: 0 10px 10px 0 yellow;
+  cursor: pointer;
+}
+
 #gitHub-button {
   position: absolute;
   left: 70px;
@@ -147,6 +152,11 @@ ul {
   background-color: antiquewhite;
   width: 50px;
   height: 50px;
+}
+
+#gitHub-button:hover {
+  box-shadow: 0 10px 10px 0 yellow;
+  cursor: pointer;
 }
 
 #start-button {
