@@ -21,7 +21,8 @@ class Game {
     this.gameWon = false;
     this.gameLost = false;
     this.hits = 0;
-  
+    this.requestAnimation = null;
+    // requestAnimationFrame(this.animate.bind(this));
   }
 
   static DIM_X = 1200;
@@ -113,7 +114,7 @@ class Game {
     // functuon taht interates through explosin arr and updates them draws rhem ...
     // just like projectiles this is a function tha iterates through explosions array and updates them and draws them. 
 
-    if (!this.gameWon && !this.gameLost) {
+    if ((!this.gameWon && !this.gameLost) && this.restartGame) {
       this.ctx.beginPath();
       this.ctx.ellipse(150, 500, 35, 65, 30, 60, 45, 15, Math.PI * 2);
       this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
@@ -127,7 +128,8 @@ class Game {
     this.ctx.textAlign = "center";
     this.ctx.fillText("Score: " + score, Game.DIM_X / 2, 40);
   
-    requestAnimationFrame(this.animate.bind(this));
+    this.requestAnimation = requestAnimationFrame(this.animate.bind(this));
+     
   }
 
   detectCollision() {
@@ -155,6 +157,13 @@ class Game {
         const personRight = person.x + person.width;
         const personTop = person.y;
         const personBottom = person.y + person.height;
+
+        // Draw a white box around the bounding box
+        this.ctx.beginPath();
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = "white";
+        this.ctx.rect(personLeft, personTop, person.width, person.height);
+        this.ctx.stroke();
   
         // Check for collision by comparing the bounding boxes
         if (
@@ -222,6 +231,7 @@ class Game {
     }
 
     if (this.hits < 500 && minPersonX <= 0) {
+      // this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
       this.renderLoseScreen();
       // Additional logic or actions can be added here if needed
     }
@@ -277,9 +287,10 @@ class Game {
 
   renderWinScreen() {
     this.gameWon = true;
+    this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
     // Render the dark transparent background
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
+    this.ctx.fillStyle = "black";
     this.ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
   
     // Render the "You Won!" text
@@ -383,9 +394,10 @@ class Game {
 
   renderLoseScreen() {
     this.gameLost = true;
+    this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
     // Render the dark transparent background
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
+    this.ctx.fillStyle = "black";
     this.ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
   
     // Render the "You Won!" text
@@ -495,14 +507,25 @@ class Game {
     this.people = [];
     this.explosions = [];
 
-    // Reinitialize the game objects and variables
+    // // Reinitialize the game objects and variables
     this.x = 1180;
     this.y = 475;
     this.handlePeople();
     this.gameover = false;
 
-    // Start the game again
-    this.start();
+    // // Start the game again
+    // // 
+    cancelAnimationFrame(this.requestAnimation);
+    this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    this.hits = 0; 
+
+      // this.ctx.beginPath();
+      // this.ctx.ellipse(150, 500, 35, 65, 30, 60, 45, 15, Math.PI * 2);
+      // this.ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+      // this.ctx.fill();
+
+    this.animate();
+    
   }
   
 }

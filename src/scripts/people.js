@@ -4,7 +4,7 @@ class People {
     this.ctx = ctx;
     this.person0 = new Image();
     this.person0.src = src;
-    this.width = 50;
+    this.width = 100;
     this.height = 60;
     this.x = x;
     this.y = 460;

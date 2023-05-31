@@ -9,8 +9,14 @@ console.log('hi');
   const startButton = document.getElementById("start-button");
   const instrucButton = document.getElementById("instructions-button");
 
-  // Just like home screen, I am grabing end screen. 
-  // const instrucScreen = document.querySelector(".instruc");
+  // Get a reference to the back button element
+  const backButton = document.querySelector('.back');
+
+  // Add a click event listener to the back button
+  backButton.addEventListener('click', function() {
+    // Navigate back to the home page
+    window.location.href = 'index.html';
+  });
 
   const instrucSelect = document.getElementById("hidden");
 
@@ -28,20 +34,6 @@ console.log('hi');
 
     homeScreen.style.display = "none";
     instrucSelect.removeAttribute("id"); 
-    // instrucSelect.style.display = "block";
-    
-
-
-    // Toggle the visibility of the instructions element
-    // instructions.classList.toggle('hidden');
-    // Toggle the display of the instructions element
-    // if (instructions.style.display === 'none' || instructions.style.display === '') {
-    //   instructions.style.display = 'block';
-    // } else {
-    //   instructions.style.display = 'none';
-    // }
-    // Toggle the visibility of the instructions element
-
   });
 
   const canvasSelect = document.getElementById("canvas-tag");
