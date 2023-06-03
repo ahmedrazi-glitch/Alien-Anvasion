@@ -10,15 +10,6 @@ class Game {
     this.background = new Background(canvas.width, canvas.height);
     this.spaceship = new Image();
     this.spaceship.src = "assets/game/spaceship/spaceship.png";
-    // new code for background music
-
-    // this.backgroundMusic = new Audio("assets/audio/musicly.mp3");
-    // this.backgroundMusic.loop = true;
-
-    
-
-
-    // the above code is new code for background music
     this.firstGame = true;
     this.people = [];
     this.x = 1180;
@@ -31,13 +22,10 @@ class Game {
     this.gameLost = false;
     this.hits = 0;
     this.requestAnimation = null;
-    // requestAnimationFrame(this.animate.bind(this));
   }
 
   static DIM_X = 1200;
   static DIM_Y = 600;
-
-  // const input = new HandleControls();
 
   handlePeople(){
     let ctx = this.ctx;
@@ -74,60 +62,18 @@ class Game {
     this.background.update();
     this.background.draw(this.ctx); // draw the background instance
     this.ctx.drawImage(this.spaceship, 100, 100, 100, 100); // draw the spaceship instace
-    // this.ctx.drawImage(this.person0, this.x, this.y, 50, 40);
-
-     // Draw button function
-    // this.drawButton() 
-    //   const buttonImage = showButton1 ? button1Image : button2Image;
-    //   ctx.drawImage(buttonImage, buttonX, buttonY, buttonWidth, buttonHeight);
-    // }
 
     this.detectCollision(); 
-
 
     this.people.forEach(person => {  // will draw each person after some distance, in a line. 
       person.update(); 
       person.draw(this.ctx); 
-      
-      
-      // if (true) {
-      //   // this.explosions.forEach(explosion => {
-      //     let explosion = new Explosion(this.ctx);
-      //     explosion.personExploding(person.x, person.y, person.width, person.height);
-      //   // });
-      // }
     });
-    // console.log(this.people.length);
-    // console.log(this.explosions.length);
-
-    // for (let i = 0; i < this.people.length; i++) {
-    //   const person = this.people[i];
-    //   const explosion = this.explosions[i];
-  
-    //   person.update();
-    //   person.draw(this.ctx);
-  
-    //   if (this.detectCollision()) {
-    //     explosion.personExploding(person.x, person.y, person.width, person.height);
-    //   }
-    // }
 
     this.projectiles.forEach(projec => {
       projec.update(2);
       projec.draw(this.ctx);
     });
-
-    
-      // is like handleClick() above and will create instances of explosions and put them in the explosions array. ANd remove people from the people array. 
-
-    // creates an explosion instance and puts it in the explosion array and removes person from the person array if there is a collision. 
-
-    // this.explosions.forEach(explosion => {
-    //   explosion.personExploding(person.x, person.y, person.width, person.height);
-    // });
-
-    // functuon taht interates through explosin arr and updates them draws rhem ...
-    // just like projectiles this is a function tha iterates through explosions array and updates them and draws them. 
 
     if ((!this.gameWon && !this.gameLost) && this.restartGame) {
       this.ctx.beginPath();
@@ -147,104 +93,6 @@ class Game {
      
   }
 
-  // drawButton(showButton1) {
-  //   // Initial button state
-  //   // let showButton1 = true; 
-  //   console.log(showButton1);
-
-  //   // Button images
-  //   const button1Image = new Image();
-  //   button1Image.src = "assets/audio/musicOn.png";
-  //   const button2Image = new Image();
-  //   button2Image.src = "assets/audio/musicOff.png";
-
-  //   // Button1 properties
-  //   const button1Width = 100;
-  //   const button1Height = 50;
-  //   const button1X = 1200 - button1Width - 10; // 10px margin from right
-  //   const button1Y = 10; // 10px margin from top
-
-  //   // Button2 properties
-  //   const button2Width = 30;
-  //   const button2Height = 30;
-  //   const button2X = 1200 - button2Width - 45; // 10px margin from right
-  //   const button2Y = 20; // 10px margin from top
-
-  //   if (showButton1 === false) {
-  //     this.ctx.drawImage(button1Image, button1X, button1Y, button1Width, button1Height);
-  //     // console.log(showButton1);
-  //   } else {
-  //     this.ctx.drawImage(button2Image, button2X, button2Y, button2Width, button2Height);
-  //     // console.log(showButton1);
-  //   }
-  // }
-
-  // handleMute() {
-  //   // Initial button state
-  //   let showButton1 = true;
-  //   // Add event listeners for button functionality
-  //   const canvas = this.ctx.canvas;
-
-  //   // Variables for button properties
-  //   const buttonWidth = 100;
-  //   const buttonHeight = 50;
-  //   const buttonX = 1200 - buttonWidth - 10; // 10px margin from right
-  //   const buttonY = 10; // 10px margin from top
-
-  //   // Function to handle mouse click event
-  //   const handleMouseClick = (e) => {
-  //     const rect = canvas.getBoundingClientRect();
-  //     const mouseX = e.clientX - rect.left;
-  //     const mouseY = e.clientY - rect.top;
-
-  //     // Check if the click position is within the button bounds
-  //     if (
-  //       mouseX >= buttonX &&
-  //       mouseX <= buttonX + buttonWidth &&
-  //       mouseY >= buttonY &&
-  //       mouseY <= buttonY + buttonHeight
-  //     ) {
-  //       canvas.style.cursor = "pointer"; // Change cursor style to pointer
-  //       this.backgroundMusic.muted = !this.backgroundMusic.muted;
-  //       showButton1 = false;
-  //       this.drawButton(showButton1);
-  //     } else {
-  //       canvas.style.cursor = "default"; // Set default cursor style
-  //     }
-  //   };
-
-  //   // Function to handle mouse move event
-  //   const handleMouseMove = (e) => {
-  //     const rect = canvas.getBoundingClientRect();
-  //     const mouseX = e.clientX - rect.left;
-  //     const mouseY = e.clientY - rect.top;
-
-  //     // Check if the mouse position is within the button bounds
-  //     if (
-  //       mouseX >= buttonX &&
-  //       mouseX <= buttonX + buttonWidth &&
-  //       mouseY >= buttonY &&
-  //       mouseY <= buttonY + buttonHeight
-  //     ) {
-  //       canvas.style.cursor = "pointer"; // Change cursor style to pointer
-  //     } else {
-  //       canvas.style.cursor = "default"; // Set default cursor style
-  //     }
-  //   };
-
-  //   canvas.addEventListener("click", handleMouseClick);
-  //   canvas.addEventListener("mousemove", handleMouseMove);
-  // }
-
-  // // Toggle button state on click
-  // toggleButton() {
-  //   // Initial button state
-  //   // let showButton1 = true;
-
-  //   showButton1 = !showButton1;
-  //   this.drawButton(showButton1);
-  // }
-
   detectCollision() {
     let collisionDetected = false; // Flag to track if collision occurred
     let minPersonX = Infinity; // Initialize the minimum x-coordinate to a large value
@@ -254,10 +102,7 @@ class Game {
       let hitDetected = false; // Flag to track if a hit occurred for the projectile
   
       for (let j = 0; j < this.people.length; j++) {
-        const person = this.people[j]; // instance of collisoon let explosion = new Explosion(ctx); 
-        //explosion.personExploding(perople[j];
-        // let explosion = new Explosion(this.ctx);
-        // explosion.personExploding(person.x, person.y, person.width, person.height);
+        const person = this.people[j]; 
 
         // Get the bounding box of the projectile
         const projectileLeft = projectile.x;

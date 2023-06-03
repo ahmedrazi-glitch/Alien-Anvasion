@@ -12,6 +12,14 @@ class People {
   }
 
   draw(ctx) {
+    // const borderWidth = 2; // Width of the border
+
+    // // Draw the red border line
+    // ctx.strokeStyle = 'red';
+    // ctx.lineWidth = borderWidth;
+    // ctx.strokeRect(this.x - borderWidth, this.y - borderWidth, this.width + borderWidth * 2, this.height + borderWidth * 2);
+
+
     ctx.drawImage(this.person0, this.x, this.y, this.width, this.height);
   }
 

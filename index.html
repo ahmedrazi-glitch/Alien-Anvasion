@@ -9,7 +9,7 @@
     <script type="application/javascript" src="./dist/main.js" defer></script>
     <title>UFP Target Practice</title>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-
+    <audio id="background-audio" src="./assets/audio/musicly.mp3" loop></audio>
   </head>
 
   <body>
@@ -25,7 +25,6 @@
           <img id="blue-ufo" src="assets/homepage/blue-ufo.png" width="100" height="100">
           <img id="green-ufo" src="assets/homepage/green-ufo.png" width="100" height="100">
         <ul>
-          <!-- <li id="title">Alien Anvasion</li> -->
           <li id="title"><span>UFO</span> <img src="assets/logo/logo1.png" alt="Image">School</li>
 
           <li id="point1">Welcome to UFO Flight School!</li>
@@ -39,17 +38,9 @@
       <input id="start-button" type="submit" value="Start">
       <input id="instructions-button" type="submit" value="Instructions">
 
-      <div class="end-screen" id="end-tag">
-        <h2>You Won!</h2>
-        <button id="restart-button">Play Again</button>
-        <button id="home-button">Back to Home</button>
-      </div>
-
-
     </div>
 
     <div class="instruc" id="hidden">
-      <!-- Your instructions content here -->
       <p>Use the spacebar ␣ on your keyboard to drop projectiles.</p>
       <p>You will have 1 extra projectile.</p>
       <p>The scores are displayed above.</p>
@@ -58,18 +49,11 @@
       <button class="back" >Back</button>
     </div>
 
-    <!-- <div class="musicButton">
-      <button id="music" ><img src="assets/audio/musicOn.png" alt="Image">Music</button>
-    </div> -->
-    <!-- <div class="musicButton" style="position: fixed; top: 0px; right: 0px;">
-      <button id="music"><img src="assets/audio/musicOn.png" alt="Image" style="width: 100px; height: 100px;"></button>
-    </div> -->
-
-    <!-- <div class="musicButton" style="position: fixed; top: 10px; right: 10px;">
-      <button id="music" style="background: antiquewhite; border: none; padding: 0; ">
+    <div class="musicButton" style="position: fixed; top: 10px; right: 10px;">
+      <button class="paused" id="music" style="background: antiquewhite; border: none; padding: 0; ">
         <img src="assets/audio/musicOn.png" alt="Image" style="width: 200px; height: 100px;">
       </button>
-    </div> -->
+    </div>
     
     <canvas class="hidden" id="canvas-tag" width="1200" height="600"></canvas>
   </body>

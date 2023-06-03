@@ -1,7 +1,6 @@
 import Game from './scripts/game.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-console.log('hi');
   const canvas = document.getElementById("canvas-tag");
   const ctx = canvas.getContext('2d');
 
@@ -9,24 +8,47 @@ console.log('hi');
   const startButton = document.getElementById("start-button");
   const instrucButton = document.getElementById("instructions-button");
 
-  // Get a reference to the back button element
+  // A reference to the back button element
   const backButton = document.querySelector('.back');
 
-  // Add a click event listener to the back button
+  // A click event listener to the back button
   backButton.addEventListener('click', function() {
     // Navigate back to the home page
     window.location.href = 'index.html';
   });
 
+  // musicButton.addEventListener('click', toggleLine);
+  const musicButton = document.getElementById('music');
+  musicButton.classList.add('line-visible');
+
+  function toggleLine() {
+    const audio = document.getElementById('background-audio');
+    const musicButton = document.getElementById('music');
+    
+    if (audio.paused) {
+      musicButton.classList.remove('paused');
+      audio.play();
+      musicButton.classList.add('play');
+      musicButton.classList.remove('line-visible');
+    } else {
+      musicButton.classList.remove('play');
+      audio.pause();
+      musicButton.classList.add('paused');
+      musicButton.classList.add('line-visible');
+    }
+  }
+
+  musicButton.addEventListener('click', toggleLine);
+
   const instrucSelect = document.getElementById("hidden");
 
-  // Get the instructions button element
+  // Getting the instructions button element
   const instructionsButton = document.getElementById('instructions-button');
 
-  // Get the instructions element
+  // Getting the instructions element
   const instructions = document.getElementById('hidden');
 
-  // Add event listener to the instructions button
+  // Adding an event listener to the instructions button
   instructionsButton.addEventListener('click', () => {
     console.log('Instructions button clicked');
     console.log('Instructions element:', instructions);
