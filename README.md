@@ -40,7 +40,7 @@ This project will be implemented with the following technologies:
   
 Game Screenshot!
 
-[Screen Shot 2023-06-01 at 10 58 01 AM]
+<img src="https://github.com/ahmedrazi-glitch/UFO-Target-Practice/blob/main/images/Game%20Screen%20Shot.png?raw=true" >
 
 
 
